@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# 제로베이스 4기 리액트 중간 미션
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. (1) 명함(각 명함은 Object) 리스트(Array) 초기화  
+    MyBusinessCard 내가 만드는 중간 미션 /   
+    card.js를 component/mybusiness/ 폴더에 넣어서 import해 초기화하였다.
 
-## Available Scripts
+2.  (2) BusinessCard 컴포넌트 안에 버튼 컴포넌트 넣을 생각.  
+    MyBusinessCard 내가 만드는 중간 미션 /   
+    Business.js를 부모 컴포넌트로 두고 Cardshape.js Recommand,js 를 자식 컴포넌트로 정하였다.
 
-In the project directory, you can run:
+3. (2 - 1) 동일한 사람은 추첨되지 않도록,
+```javascript
+while(true){
+    //난수로 card 인덱스 값 추출
+    const rand = Math.floor(Math.random() * cards.length);
+    if(!winners.includes(rand)){
+        setWinners([...winners, rand]);
+        break;
+    }
+}
+```
 
-### `npm start`
+4. (2 - 2) 별도로 추첨자 명단 저장
+```javascript
+//setState로 BusinessCard에 winners라는 배열 state 관리
+const [winners, setWinners] = useState([]);
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+4. (2 - 3) 초기화 후 렌더링 할 수 있게 loading state와 useEffect(componentDidMount 동작) 활용
+```javascript
+const [loading, setLoading] = useState(true);
+    
+useEffect(()=>{
+    setLoading(false);
+},[]);
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+return 값
+loading ? "LOADING" : 
+<>
+    <Cardshape winner={cards[winners[winners.length-1]]} />
+    <Recommand recommandClicked={recommandClicked} />
+</>
+```
