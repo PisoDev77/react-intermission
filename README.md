@@ -2,7 +2,9 @@
 
 1. (1) 명함(각 명함은 Object) 리스트(Array) 초기화  
     MyBusinessCard 내가 만드는 중간 미션 /   
-    card.js를 component/mybusiness/ 폴더에 넣어서 import해 초기화하였다.
+    card.js를 component/mybusiness/ 폴더에 넣어서 import해 초기화하였다.  
+
+    라이브 코딩에서는 명함리스트가 API로 호출하기때문에 useEffect를 이용해서 초기화할 수 있도록한다.
 
 2.  (2) BusinessCard 컴포넌트 안에 버튼 컴포넌트 넣을 생각.  
     MyBusinessCard 내가 만드는 중간 미션 /   
