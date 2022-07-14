@@ -47,7 +47,10 @@ export default function BusinessCard() {
             {
                 loading ? "LOADING" : 
                 <>
-                    <Cardshape winner={cards[winners[winners.length-1]]} />
+                    {winners.map((winner)=>{
+                        return (<Cardshape winner={cards[winner]} />)
+                    })}
+                    
                     <Recommand recommandClicked={recommandClicked} />
                 </>
             }
